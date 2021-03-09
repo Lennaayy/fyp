@@ -1,7 +1,8 @@
 import cv2 
 import pytesseract as tess
 tess.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-from PIL import Image
+from PIL import ImageGrab
+import time
 
 # Return the coordinates of the blocks on screen in an array
 def find_blocks(file_name, tlx, tly):
@@ -36,17 +37,29 @@ def find_blocks(file_name, tlx, tly):
     
     return allCoords
 
-def group_requirement_value(file_name):
+def get_image_string(filename):
     # Read in the game state
-    img = Image.open(file_name)
-
+    image = cv2.imread(filename)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    cropped = gray[50:150, 625:775]
+    
     # Read all the text on screen
-    string = tess.image_to_string(img)
+    return tess.image_to_string(cropped)
+
+def group_requirement_value(tlx, tly, brx, bry):
+    string = get_image_string("game_state.png")
 
     # Return the first digit, which is the group requirement value 
-    for i in string.split():
-        if i.isdigit() and i != "32":
-            val = int(i)-1
-            break
+    val = 0
+    while(val == 0):
+        for i in string.split():
+            if i.isdigit():
+                val = int(i)-1
+                break
+        if(val == 0):
+            img = ImageGrab.grab(bbox=(tlx, tly, brx, bry))
+            img.save("game_state.png", "PNG")
+            string = get_image_string("game_state.png")
 
     return val
+

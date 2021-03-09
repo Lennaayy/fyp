@@ -1,4 +1,3 @@
-from numpy.core.shape_base import block
 import readers.coord_read as cr
 import readers.block_read as br
 import logic.legal_moves as lg
@@ -15,51 +14,51 @@ random.seed()
 
 try:
     while True:
-        if keyboard.is_pressed('q'):  # if key 'q' is pressed/held
+        if keyboard.is_pressed('q'):  # if key 'q' is pressed/held the program will quit
             break
 
-        # Grab the game_state
+        # Grab the game state, this is only needed once per level as we can return to the starting state if a reset is needed
         img = ImageGrab.grab(bbox=(tlx, tly, brx, bry))
         img.save("game_state.png", "PNG")
 
         # Get the required grouping value 
-        group_val = br.group_requirement_value("game_state.png")
+        group_val = br.group_requirement_value(tlx, tly, brx, bry)
 
         # Get all blocks on screen
         all_block_coords = br.find_blocks("game_state.png", tlx, tly)
         blocks_left = all_block_coords
         
-
+        # Start the Level until it is solved
         doing_level = True
-
         while doing_level:
-            if keyboard.is_pressed('q'):  # if key 'q' is pressed/held
+            if keyboard.is_pressed('q'):  # if key 'q' is pressed/held the program will quit
                 break
 
             # Find the legal moves
-            pair_list = lg.legal_moves(blocks_left, group_val)
+            legal_block_groupings = lg.legal_moves(blocks_left, group_val)
             
             # If none exist, reset the level as it is unsolveable
-            if not pair_list:
+            if not legal_block_groupings:
                 pg.leftClick(reset_x, reset_y)
                 pg.mouseDown()
                 pg.mouseUp()
                 blocks_left = all_block_coords
                 continue
 
-            # Select a random block pairing
-            pair = random.choice(pair_list)
+            # Select a random block grouping
+            grouping = random.choice(legal_block_groupings)
 
-            # Click on the first block and release on the second
-            pg.moveTo(pair[0][0], pair[0][1])
+            # Click on the first block and release on the last one (index -1 from end)
+            pg.moveTo(grouping[0][0], grouping[0][1])
             pg.mouseDown(button='left')
-            pg.moveTo(pair[1][0], pair[1][1])
+            pg.moveTo(grouping[-1][0], grouping[-1][1])
             pg.mouseUp()
             # https://pyautogui.readthedocs.io/en/latest/mouse.html
 
-            # Remove the pair from the blocks remaining list
-            blocks_left = [block for block in blocks_left if block not in pair]
+            # Remove the blocks of the grouping from the blocks remaining list
+            blocks_left = [block for block in blocks_left if block not in grouping]
 
+            # If no blocks remaining the level is solves and the next one will start
             if(len(blocks_left) == 0):
                 doing_level = False
 
