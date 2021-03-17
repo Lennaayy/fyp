@@ -27,6 +27,7 @@ try:
         # Get all blocks on screen
         all_block_coords = br.find_blocks("game_state.png", tlx, tly)
         blocks_left = all_block_coords
+        print(all_block_coords)
         
         # Start the Level until it is solved
         doing_level = True
@@ -46,7 +47,19 @@ try:
                 continue
 
             # Select a random block grouping
-            grouping = random.choice(legal_block_groupings)
+            good_choice = False
+            while not good_choice:
+                grouping = random.choice(legal_block_groupings)
+                blocks_left_copy = blocks_left
+                blocks_left_copy = [block for block in blocks_left_copy if block not in grouping]
+                next_grouping = lg.legal_moves(blocks_left_copy, group_val)
+
+                if len(blocks_left_copy) == 0:
+                    good_choice = True 
+                elif not next_grouping: 
+                    good_choice = False 
+                else:
+                    good_choice = True
 
             # Click on the first block and release on the last one (index -1 from end)
             pg.moveTo(grouping[0][0], grouping[0][1])
