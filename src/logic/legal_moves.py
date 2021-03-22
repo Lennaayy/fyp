@@ -48,7 +48,10 @@ def legal_moves(block_coords, group_val):
             legal_move_groupings.append(grouping)
 
     if(all_blocks_groupable(block_coords, legal_move_groupings)):
-        return legal_move_groupings
+        end_blocks = []
+        for group in legal_move_groupings:
+            end_blocks.append([group[0], group[-1]])
+        return end_blocks
     else: 
         return []
 

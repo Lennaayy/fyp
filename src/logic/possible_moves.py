@@ -13,31 +13,38 @@ def possible_moves(block_coords, group_val):
 
     for group in groupable_x:
         for i in range(len(group)-group_val):
-            possible_count, extra, j = 0, 0, 1
-            while possible_count < group_val and j < len(group):
+            static, extra, j = 0, 0, i+1
+
+            col_group_removeables = len(group[i+1:-1])//group_val+1
+            extra += (group_val+1)*col_group_removeables
+
+            while static < group_val and j < len(group):
                 if group[j] in flattened_y:
                     extra+=1
                     j+=1
                 else:
-                    possible_count+=1
+                    static+=1
                     j+=1
-            possible_moves.append([group[i], group[i+group_val]])
-            for j in range(1, extra+1):
+            for j in range(extra+1):
                 if i+group_val+j < len(group):
                     possible_moves.append([group[i], group[i+group_val+j]])
+
     
     for group in groupable_y:
         for i in range(len(group)-group_val):
-            possible_count, extra, j = 0, 0, 1
-            while possible_count < group_val and j < len(group):
+            static, extra, j = 0, 0, i+1
+
+            col_group_removeables = len(group[i+1:-1])//group_val+1
+            extra += (group_val+1)*col_group_removeables
+
+            while static < group_val and j < len(group):
                 if group[j] in flattened_x:
                     extra+=1
                     j+=1
                 else:
-                    possible_count+=1
+                    static+=1
                     j+=1
-            possible_moves.append([group[i], group[i+group_val]])
-            for j in range(1, extra+1):
+            for j in range(extra+1):
                 if i+group_val+j < len(group):
                     possible_moves.append([group[i], group[i+group_val+j]])
 
@@ -73,16 +80,4 @@ def groupable_x_and_y(block_coords, group_val):
             groupable_y.append(group)
     
     return groupable_x, groupable_y
-
-# all_block_coords = [[652.5, 620.5], [652.5, 583.0], [615.5, 583.0], [652.5, 545.5], [615.5, 545.5], [578.0, 545.5], [652.5, 508.0], [615.5, 508.0], [578.0, 508.0], [615.5, 470.5], [578.0, 470.5], [578.0, 433.5]]
-all_block_coords = [[1, 1], [1, 2], [1, 3], [1, 4], [2, 2], [2, 3], [2, 4], [2, 5], [3, 3], [3, 4], [3, 5], [3, 6]]
-blocks_left = all_block_coords
-group_val = 2
-
-groupable_x, groupable_y = groupable_x_and_y(all_block_coords, group_val)
-
-print("X:", groupable_x)
-print("Y:", groupable_y)
-
-print(possible_moves(all_block_coords, group_val))
 
