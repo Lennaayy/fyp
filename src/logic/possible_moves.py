@@ -11,6 +11,7 @@ def possible_moves(block_coords, group_val):
     flattened_x = [item for sublist in groupable_x for item in sublist]
     flattened_y = [item for sublist in groupable_y for item in sublist]
 
+    # loop through each block in each row, and add all blocks it can pair with in that row
     for group in groupable_x:
         for i in range(len(group)-group_val):
             static, extra, j = 0, 0, i+1
@@ -29,7 +30,7 @@ def possible_moves(block_coords, group_val):
                 if i+group_val+j < len(group):
                     possible_moves.append([group[i], group[i+group_val+j]])
 
-    
+    # loop through each block in each column, and add all blocks it can pair with in that column
     for group in groupable_y:
         for i in range(len(group)-group_val):
             static, extra, j = 0, 0, i+1
@@ -50,18 +51,21 @@ def possible_moves(block_coords, group_val):
 
     return possible_moves
 
-
+# Find all the blocks that can be removed 
 def groupable_x_and_y(block_coords, group_val):
 
+    # All blocks splint into x and y only
     all_x = [block[0] for block in block_coords]
     all_y = [block[1] for block in block_coords]
 
+    # Count each row and column
     x_ctr = Counter(all_x)
     y_ctr = Counter(all_y)
 
     groupable_x = []
     groupable_y = []
 
+    # If a row or column has more blocks than the group value, add those blocks
     for key in x_ctr:
         group = []
         if x_ctr[key] > group_val:
@@ -70,7 +74,7 @@ def groupable_x_and_y(block_coords, group_val):
                     group.append(block)
             groupable_x.append(group)
 
-    
+    # If a row or column has more blocks than the group value, add those blocks
     for key in y_ctr:
         group = []
         if y_ctr[key] > group_val:
