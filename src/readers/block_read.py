@@ -2,8 +2,6 @@ import cv2
 import pytesseract as tess
 tess.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 from PIL import ImageGrab
-import time
-
 # Return the coordinates of the blocks on screen in an array
 def find_blocks(file_name, tlx, tly):
     # Read in the image, grayscale and find the countours
@@ -37,17 +35,19 @@ def find_blocks(file_name, tlx, tly):
     
     return allCoords
 
-def get_image_string(filename):
+def get_image_string(filename, xmin, xmax, ymin, ymax):
     # Read in the game state
     image = cv2.imread(filename)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    cropped = gray[50:150, 625:775]
+    cropped = gray[xmin:xmax, ymin:ymax]
+
+    # cv2.imwrite("level.png", cropped)
     
     # Read all the text on screen
     return tess.image_to_string(cropped)
 
 def group_requirement_value(tlx, tly, brx, bry):
-    string = get_image_string("game_state.png")
+    string = get_image_string("game_state.png", 50, 150, 625, 775)
 
     # Return the first digit, which is the group requirement value 
     val = 0
@@ -59,7 +59,18 @@ def group_requirement_value(tlx, tly, brx, bry):
         if(val == 0):
             img = ImageGrab.grab(bbox=(tlx, tly, brx, bry))
             img.save("game_state.png", "PNG")
-            string = get_image_string("game_state.png")
+            string = get_image_string("game_state.png", 50, 150, 625, 775)
 
     return val
+
+def get_level(tlx, tly, brx, bry):
+    string = get_image_string("game_state.png", 550, 600, 550, 775)
+
+    string = string.split('/')[0]
+
+    val = ''.join(filter(lambda i: i.isdigit(), string))
+
+    return val
+
+
 
