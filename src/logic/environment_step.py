@@ -1,10 +1,9 @@
 import logic.calculate_reward as cr
 
-def environment_step(all_possible_block_groupings, state, action, blocks_left, all_block_coords, group_val, printBool, level):
-    grouping = all_possible_block_groupings[action]
+def environment_step(all_possible_block_groupings, state, action, blocks_left, all_block_coords, group_val, level):
 
-    if printBool:
-        print("Action Taken:", grouping)
+    # Infer the grouping from the action number chosen
+    grouping = all_possible_block_groupings[action]
 
     # Variable for crossing on the x or y axis
     same_x = (grouping[0][0] == grouping[-1][0])
@@ -21,14 +20,9 @@ def environment_step(all_possible_block_groupings, state, action, blocks_left, a
         if not(xmin <= block[0] <= xmax and ymin <= block[1] <= ymax):
             new_blocks_left.append(block)
 
-    # if printBool:
-    #     print("BLOCKS LEFT:", new_blocks_left)
-
-
+    # Get the reward for this move, if it finishes the level, and the new blocks remaining after this move
     reward, doing_level, new_blocks_left = cr.calculate_reward(grouping, blocks_left, new_blocks_left, all_block_coords, group_val, same_x, level)
 
-    if printBool:
-        print("Reward:", reward)
     # Move to the next stae
     next_state = state
 

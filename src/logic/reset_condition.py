@@ -1,6 +1,7 @@
 import logic.legal_moves as lg
 
 def reset(blocks_left, group_val, doing_level):
+    
     # Find the legal moves
     legal_block_groupings = lg.legal_moves(blocks_left, group_val)
     

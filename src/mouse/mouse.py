@@ -4,7 +4,11 @@ import pyautogui as pg
 def reset():
     # The bounding box coordinates of the game 
     tlx, tly, brx, bry = cr.window_coords()
+
+    # The position of the reset button
     reset_x, reset_y = cr.reset_coords(tlx, tly, brx, bry)
+
+    # Click the reset button
     pg.leftClick(reset_x, reset_y)
     pg.mouseDown()
     pg.mouseUp()
