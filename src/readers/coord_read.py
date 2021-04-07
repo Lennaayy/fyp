@@ -1,5 +1,6 @@
 from win32gui import FindWindow, GetWindowRect
 import pygetwindow
+import win32gui
 
 # Find the coordinates of the window
 def window_coords():
@@ -12,6 +13,10 @@ def window_coords():
 
     # Get the window's coordinates
     window_handle = FindWindow(None, "Adobe Flash Player 32")
+
+    # Set to the foreground
+    win32gui.SetForegroundWindow(window_handle)
+
     rect = GetWindowRect(window_handle)
     tlx = rect[0]
     tly = rect[1]
