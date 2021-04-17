@@ -50,3 +50,5 @@ Thirdly, open the game through the Flashpoint application, and press the "play" 
 Finally, to run the program open VSC, ensure both the game and VSC are on the same screen, navigate to *src/main.py* and click the run button in the top-right corner.
 
 If you wish to terminate the program at any time, hold the **q** key, though this cannot interrupt the computer vision library pipeline at the start of each level which can take 1-5 seconds. 
+
+### Each level will start automatically, and is terminated upon completion of the game (10-15 minutes total).
