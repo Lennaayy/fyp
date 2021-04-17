@@ -39,7 +39,7 @@ conda list
 
 ## Usage
 
-After the installation of the game and environment, I'd recommend using the Visual Studio Code IDE to run this program.
+After the installation of the game and environment, I'd recommend using the [Visual Studio Code IDE](https://code.visualstudio.com/) to run this program.
 
 First, open the project folder in VSC.
 
