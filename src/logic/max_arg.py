@@ -28,7 +28,7 @@ def max_q_value(q_table, all_possible_block_groupings, legal_block_groupings):
 
     max = -1000
 
-    # Find the maximum value's index
+    # Find the maximum value
     for i in indexes:
         if q_table[0][i] > max:
             max = q_table[0][i]
