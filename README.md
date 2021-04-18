@@ -37,6 +37,12 @@ conda activate fyp
 conda list
 ```
 
+### Other Packages
+
+Pytesseract is another package used in this project, the exe can be downloaded on the Github [here](https://github.com/UB-Mannheim/tesseract/wiki)
+
+Make sure to install for all users
+
 ## Usage
 
 After the installation of the game and environment, I'd recommend using the [Visual Studio Code IDE](https://code.visualstudio.com/) to run this program.
