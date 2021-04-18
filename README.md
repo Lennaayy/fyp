@@ -43,7 +43,7 @@ After the installation of the game and environment, I'd recommend using the [Vis
 
 First, open the project folder in VSC.
 
-Second, select the *fyp* python environment by pressing **Ctrl+Shift+P**, Python: Select Interpreter, and pressing the *fyp* conda environment.
+Second, Press **Ctrl+Shift+P** and type "python" to install the python extension for VSC, then select the *fyp* python environment by pressing **Ctrl+Shift+P**, typing "Python: Select Interpreter", and pressing the *fyp* conda environment.
 
 Thirdly, open the game through the Flashpoint application, and press the "play" button to start puzzle 1/50. You may turn off the music here in the top-left if you like.
 
