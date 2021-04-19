@@ -27,7 +27,7 @@ Install the [Visual Studio Code IDE](https://code.visualstudio.com/) to run this
 
 Step 1: open the project folder in VSC.
 
-Step 2: Press **Ctrl+Shift+P** and type "python" to install the python extension for VSC, then select the *anaconda/conda* python environment by pressing **Ctrl+Shift+P**, typing "Python: Select Interpreter", and pressing the *anaconda/conda* environment.
+Step 2: Press **Ctrl+Shift+P** and type "python" to install the python extension for VSC, then select the *anaconda/conda* python environment by pressing **Ctrl+Shift+P**, typing "Python: Select Interpreter", and pressing the *anaconda/conda* environment. (may require a restart first for PATH to update)
 
 Step 3: Create a new terminal using **Ctrl+Shift+'**, and select "New Command Prompt" as the terminal type in the far right.
 
