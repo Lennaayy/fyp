@@ -1,5 +1,6 @@
 import cv2 
 import pytesseract as tess
+tess.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 from PIL import ImageGrab
 
 # Return the coordinates of the blocks on screen in an array
