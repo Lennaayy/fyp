@@ -44,7 +44,7 @@ pip install pygetwindow
 pip install keyboard
 ```
 
-#### **Route 2:** (Machine dependent, [obligatory](https://donthitsave.com/comic/2016/07/15/it-works-on-my-computer))
+#### **Route 2:** (Machine dependant, [obligatory](https://donthitsave.com/comic/2016/07/15/it-works-on-my-computer))
 Open up cmd.exe (may require a restart first for PATH to update) and navigate to the fyp directory where the *environment.yml* is stored.
 
 ```bash
