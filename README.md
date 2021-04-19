@@ -29,7 +29,7 @@ Step 1: open the project folder in VSC.
 
 Step 2: Press **Ctrl+Shift+P** and type "python" to install the python extension for VSC, then select the *anaconda/conda* python environment by pressing **Ctrl+Shift+P**, typing "Python: Select Interpreter", and pressing the *anaconda/conda* environment. (may require a restart first for PATH to update)
 
-Step 3: Create a new terminal using **Ctrl+Shift+'**, and select "New Command Prompt" as the terminal type in the far right.
+Step 3: Create a new terminal using **Ctrl+Shift+'**, and select "New Command Prompt" as the terminal type in the far right drop down menu in the menu bar.
 
 Step 4: In the terminal run the following commands:
 
