@@ -22,7 +22,7 @@ My python environment can be recreated exactly using the [Conda package manager.
 
 Follow the installation guide, making sure to tick **"Add Anaconda3 to my PATH environment variable"** in Advanced Options, otherwise it will need to be added manually.
 
-#### Route 2: 
+#### **Route 1:** 
 Install the [Visual Studio Code IDE](https://code.visualstudio.com/) to run this program.
 
 Step 1: open the project folder in VSC.
@@ -44,7 +44,7 @@ pip install pygetwindow
 pip install keyboard
 ```
 
-#### Route 2: (Machine dependent, [obligatory](https://donthitsave.com/comic/2016/07/15/it-works-on-my-computer))
+#### **Route 2:** (Machine dependent, [obligatory](https://donthitsave.com/comic/2016/07/15/it-works-on-my-computer))
 Open up cmd.exe (may require a restart first for PATH to update) and navigate to the fyp directory where the *environment.yml* is stored.
 
 ```bash
