@@ -118,7 +118,7 @@ try:
             # Retrieve necessary q-table parameters and update values accodingly 
             old_value = q_table[state, action]
             next_max = ma.max_q_value(q_table, all_possible_block_groupings, legal_block_groupings)
-            new_value = (1 - alpha) * old_value + alpha * (reward + gamma * next_max) # Formula here
+            new_value = old_value + alpha * (reward + (gamma * next_max) - old_value) # Formula here
             q_table[state, action] = new_value
 
             # this reward indicates the state space has reset, return to move 0 with no moves made
